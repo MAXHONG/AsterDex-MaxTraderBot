@@ -5,10 +5,21 @@
     "private_key": "0xYourAPIWalletPrivateKey",
     "api_base_url": "https://fapi.asterdex.com"
   },
-  "deepseek": {
-    "api_key": "your_deepseek_api_key",
-    "api_base_url": "https://api.deepseek.com",
-    "model": "deepseek-chat"
+  "ai": {
+    "enabled": true,
+    "provider": "deepseek",
+    "deepseek": {
+      "api_key": "your_deepseek_api_key_here",
+      "api_base_url": "https://api.deepseek.com",
+      "model": "deepseek-chat",
+      "timeout": 30
+    },
+    "grok": {
+      "api_key": "your_grok_api_key_here",
+      "api_base_url": "https://api.x.ai/v1",
+      "model": "grok-beta",
+      "timeout": 30
+    }
   },
   "trading": {
     "symbols": [

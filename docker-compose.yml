@@ -12,12 +12,33 @@ services:
     environment:
       - TZ=Asia/Shanghai
       - PYTHONUNBUFFERED=1
-      # Uncomment and set if you prefer environment variables over config.json
+      - PYTHONDONTWRITEBYTECODE=1
+      
+      # === Option 1: Use config.json file (Recommended) ===
+      # Mount config.json below and leave these commented
+      
+      # === Option 2: Use environment variables ===
+      # Uncomment below to use .env file instead of config.json
+      
+      # AsterDEX API (REQUIRED)
       # - ASTERDEX_USER=${ASTERDEX_USER}
       # - ASTERDEX_SIGNER=${ASTERDEX_SIGNER}
       # - ASTERDEX_PRIVATE_KEY=${ASTERDEX_PRIVATE_KEY}
+      # - ASTERDEX_API_BASE_URL=${ASTERDEX_API_BASE_URL:-https://fapi.asterdex.com}
+      
+      # AI Configuration (OPTIONAL)
+      # - AI_ENABLED=${AI_ENABLED:-true}
+      # - AI_PROVIDER=${AI_PROVIDER:-deepseek}
+      
+      # DeepSeek AI
       # - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      # - DEEPSEEK_API_BASE_URL=${DEEPSEEK_API_BASE_URL:-https://api.deepseek.com}
+      # - DEEPSEEK_MODEL=${DEEPSEEK_MODEL:-deepseek-chat}
+      
+      # Grok AI (Alternative)
       # - GROK_API_KEY=${GROK_API_KEY}
+      # - GROK_API_BASE_URL=${GROK_API_BASE_URL:-https://api.x.ai/v1}
+      # - GROK_MODEL=${GROK_MODEL:-grok-beta}
     
     # Volume mounts
     volumes:
