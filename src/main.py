@@ -12,7 +12,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 from api import AsterDexClient, DeepSeekClient
 from strategies import DoubleMaStrategy
-from trading import Trader, RiskManager
+from trading import Trader, RiskManager, ManualOrderHandler, ManualOrderAPIServer
 from utils import get_config, setup_logger, get_logger
 
 
@@ -59,6 +59,11 @@ class TradingBot:
         
         # 初始化调度器
         self.scheduler = BackgroundScheduler()
+        
+        # 初始化手动交易功能（可选）
+        self.manual_order_handler = None
+        self.manual_order_api = None
+        self._init_manual_trading()
         
         # 运行标志
         self.is_running = False
@@ -188,6 +193,52 @@ class TradingBot:
                     self.logger.info(f"{symbol} 设置完成")
                 except Exception as e:
                     self.logger.error(f"{symbol} 设置失败: {e}")
+    
+    def _init_manual_trading(self):
+        """初始化手动交易功能"""
+        manual_config = self.config.config.get('manual_trading', {})
+        
+        if not manual_config.get('enabled', False):
+            self.logger.info("手动交易功能未启用")
+            return
+        
+        try:
+            # 使用第一个交易器作为手动交易的执行器
+            if not self.traders:
+                self.logger.warning("无可用交易器，跳过手动交易功能初始化")
+                return
+            
+            trader = list(self.traders.values())[0]
+            
+            # 创建手动交易处理器
+            handler_config = {
+                'order_file': manual_config.get('file_watch', {}).get('order_file', 'manual_orders.json'),
+                'enable_file_watch': manual_config.get('file_watch', {}).get('enabled', True),
+                'default_leverage': manual_config.get('default_leverage', 3),
+                'default_position_percent': manual_config.get('default_position_percent', 20),
+                'check_interval': manual_config.get('check_interval', 10)
+            }
+            
+            self.manual_order_handler = ManualOrderHandler(trader, handler_config)
+            self.logger.info("✅ 手动交易处理器已初始化")
+            
+            # 创建 API 服务器（如果启用）
+            api_config = manual_config.get('api_server', {})
+            if api_config.get('enabled', True):
+                host = api_config.get('host', '0.0.0.0')
+                port = api_config.get('port', 8080)
+                
+                self.manual_order_api = ManualOrderAPIServer(
+                    self.manual_order_handler,
+                    host=host,
+                    port=port
+                )
+                self.logger.info("✅ 手动交易 API 服务器已初始化")
+            
+        except Exception as e:
+            self.logger.error(f"初始化手动交易功能失败: {e}", exc_info=True)
+            self.manual_order_handler = None
+            self.manual_order_api = None
     
     def _run_high_frequency_strategy(self):
         """运行高频策略"""
