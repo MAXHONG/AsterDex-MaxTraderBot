@@ -613,6 +613,7 @@ docker system prune -a
 | 文档 | 说明 | 链接 |
 |------|------|------|
 | **README.md** | 主文档（本文件） | 当前页面 |
+| **OPERATIONS_GUIDE.md** | 🔥 操作指南（启动/暂停/结束） | [查看](OPERATIONS_GUIDE.md) |
 | **DOCKER_DEPLOYMENT.md** | Docker 部署完整指南 | [查看](DOCKER_DEPLOYMENT.md) |
 | **DEPLOYMENT_GUIDE.md** | 传统部署完整指南 | [查看](DEPLOYMENT_GUIDE.md) |
 | **AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md** | AI 增强系统详细说明 | [查看](AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md) |
@@ -624,6 +625,7 @@ docker system prune -a
 | Document | Description | Link |
 |----------|-------------|------|
 | **README_EN.md** | Main README | [View](README_EN.md) |
+| **OPERATIONS_GUIDE_EN.md** | 🔥 Operations Guide (Start/Pause/Stop) | [View](OPERATIONS_GUIDE_EN.md) |
 | **DOCKER_DEPLOYMENT_EN.md** | Docker Deployment Guide | [View](DOCKER_DEPLOYMENT_EN.md) |
 | **DEPLOYMENT_GUIDE_EN.md** | Deployment Guide | [View](DEPLOYMENT_GUIDE_EN.md) |
 | **QUICKSTART_EN.md** | Quick Start Guide | [View](QUICKSTART_EN.md) |

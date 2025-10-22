@@ -613,6 +613,7 @@ docker system prune -a
 | Document | Description | Link |
 |----------|-------------|------|
 | **README.md** | Main README | [View](README.md) |
+| **OPERATIONS_GUIDE.md** | 🔥 Operations Guide (Start/Pause/Stop) | [View](OPERATIONS_GUIDE.md) |
 | **DOCKER_DEPLOYMENT.md** | Docker Deployment Guide | [View](DOCKER_DEPLOYMENT.md) |
 | **DEPLOYMENT_GUIDE.md** | Traditional Deployment Guide | [View](DEPLOYMENT_GUIDE.md) |
 | **AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md** | AI Enhancement System | [View](AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md) |
