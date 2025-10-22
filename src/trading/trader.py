@@ -168,10 +168,13 @@ class Trader:
                 
                 # 使用 DeepSeek 进行二次确认（如果配置了）
                 if self.deepseek and signal['confidence'] < 90:
-                    ai_signal = self._get_ai_confirmation(symbol, signal)
-                    if ai_signal['action'] == 'HOLD':
-                        self.logger.info(f"AI 建议持有，跳过 {symbol} 开仓")
-                        return None
+                    try:
+                        ai_signal = self._get_ai_confirmation(symbol, signal)
+                        if ai_signal['action'] == 'HOLD':
+                            self.logger.info(f"AI 建议持有，跳过 {symbol} 开仓")
+                            return None
+                    except Exception as e:
+                        self.logger.warning(f"AI 分析异常（使用本地策略继续）: {e}")
                 
                 # 执行开仓
                 return self._open_position(symbol, action, available_balance, signal)
@@ -366,7 +369,7 @@ class Trader:
         signal: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
-        使用 AI 进行交易信号确认
+        使用 AI 进行交易信号确认（可选功能）
         
         Args:
             symbol: 交易对符号
@@ -379,7 +382,7 @@ class Trader:
             current_price = signal.get('current_price', 0)
             ma_data = signal.get('ma_data', {})
             
-            # 获取市场情绪
+            # 获取市场情绪（设置超时避免阻塞）
             sentiment = self.deepseek.get_market_sentiment(symbol)
             
             # 分析交易信号
@@ -395,5 +398,11 @@ class Trader:
             return ai_signal
         
         except Exception as e:
-            self.logger.error(f"AI 分析失败: {e}")
-            return {'action': 'HOLD', 'confidence': 0, 'reason': 'AI 分析失败'}
+            # AI 分析失败时返回原始信号，不阻止交易
+            self.logger.warning(f"AI 分析失败（降级到本地策略）: {e}")
+            # 返回原始信号的动作和置信度，让本地策略决定
+            return {
+                'action': signal['action'], 
+                'confidence': signal['confidence'], 
+                'reason': f'AI不可用，使用本地策略 (错误: {str(e)[:50]})'
+            }

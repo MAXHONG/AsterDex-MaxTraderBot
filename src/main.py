@@ -76,18 +76,29 @@ class TradingBot:
         )
     
     def _init_deepseek_client(self) -> DeepSeekClient:
-        """初始化 DeepSeek 客户端"""
+        """初始化 DeepSeek 客户端（可选）"""
         deepseek_config = self.config.deepseek
         
         if not deepseek_config or not deepseek_config.get('api_key'):
-            self.logger.warning("未配置 DeepSeek API，将跳过 AI 分析")
+            self.logger.warning("=" * 60)
+            self.logger.warning("⚠️  未配置 DeepSeek API")
+            self.logger.warning("机器人将使用纯本地策略运行（无AI辅助）")
+            self.logger.warning("这不影响交易功能，只是少了AI的二次确认")
+            self.logger.warning("=" * 60)
             return None
         
-        return DeepSeekClient(
-            api_key=deepseek_config['api_key'],
-            api_base_url=deepseek_config.get('api_base_url', 'https://api.deepseek.com'),
-            model=deepseek_config.get('model', 'deepseek-chat')
-        )
+        try:
+            client = DeepSeekClient(
+                api_key=deepseek_config['api_key'],
+                api_base_url=deepseek_config.get('api_base_url', 'https://api.deepseek.com'),
+                model=deepseek_config.get('model', 'deepseek-chat')
+            )
+            self.logger.info("✅ DeepSeek AI 客户端初始化成功（将作为辅助决策）")
+            return client
+        except Exception as e:
+            self.logger.warning(f"⚠️  DeepSeek 初始化失败: {e}")
+            self.logger.warning("机器人将使用纯本地策略运行")
+            return None
     
     def _init_strategies(self) -> Dict[str, DoubleMaStrategy]:
         """初始化交易策略"""
