@@ -2,6 +2,8 @@
 
 基于 AsterDEX API 的双均线交易系统，支持 BTC、ETH、BNB 和 ASTER 合约交易。
 
+**语言 / Language**: [中文文档](README.md) | [English Documentation](README_EN.md)
+
 ## 功能特性
 
 - ✅ **双均线交易系统**：基于 SMA20/60/120 和 EMA20/60/120
