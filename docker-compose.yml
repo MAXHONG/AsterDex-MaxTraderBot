@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  asterdex-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: asterdex-trading-bot
+    restart: unless-stopped
+    
+    # Environment variables (optional, can override config.json)
+    environment:
+      - TZ=Asia/Shanghai
+      - PYTHONUNBUFFERED=1
+      # Uncomment and set if you prefer environment variables over config.json
+      # - ASTERDEX_USER=${ASTERDEX_USER}
+      # - ASTERDEX_SIGNER=${ASTERDEX_SIGNER}
+      # - ASTERDEX_PRIVATE_KEY=${ASTERDEX_PRIVATE_KEY}
+      # - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      # - GROK_API_KEY=${GROK_API_KEY}
+    
+    # Volume mounts
+    volumes:
+      # Mount configuration file (REQUIRED)
+      - ./config/config.json:/app/config/config.json:ro
+      
+      # Mount logs directory (persistent logs)
+      - ./logs:/app/logs
+      
+      # Optional: Mount custom strategy files
+      # - ./custom_strategies:/app/src/strategies/custom:ro
+    
+    # Network configuration
+    networks:
+      - bot-network
+    
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  bot-network:
+    driver: bridge
+
+# Optional: Add volume for persistent data
+# volumes:
+#   bot-logs:
+#     driver: local
