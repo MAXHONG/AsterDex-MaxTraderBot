@@ -614,6 +614,7 @@ docker system prune -a
 |----------|-------------|------|
 | **README.md** | Main README | [View](README.md) |
 | **OPERATIONS_GUIDE.md** | 🔥 Operations Guide (Start/Pause/Stop) | [View](OPERATIONS_GUIDE.md) |
+| **MANUAL_TRADING_GUIDE.md** | 🎮 Manual Trading Guide (NEW!) | [View](MANUAL_TRADING_GUIDE.md) |
 | **DOCKER_DEPLOYMENT.md** | Docker Deployment Guide | [View](DOCKER_DEPLOYMENT.md) |
 | **DEPLOYMENT_GUIDE.md** | Traditional Deployment Guide | [View](DEPLOYMENT_GUIDE.md) |
 | **AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md** | AI Enhancement System | [View](AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md) |
@@ -752,6 +753,20 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+<div align="center">
+
+**Developer**: MAXHONG  
+**Repository**: https://github.com/MAXHONG/AsterDex-MaxTraderBot  
+**Last Updated**: 2025-10-22  
+
+⭐ If this project helps you, please give it a Star! ⭐
+
+</div>
+TWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ---

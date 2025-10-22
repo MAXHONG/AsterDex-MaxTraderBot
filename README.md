@@ -24,6 +24,13 @@
   - ⏱️ 中频：4小时K线，每1小时检查
 - **智能信号**：双均线密集判断 + 突破确认
 
+### 🎮 手动交易（新功能）
+- **立即开仓**：发送指令后立即执行市价开仓
+- **自动平仓**：机器人持续监控并在触发条件时自动平仓
+- **止损止盈**：支持设置止损/止盈百分比
+- **多种方式**：HTTP API、文件监听
+- **独立管理**：手动持仓与自动策略互不干扰
+
 ### 🤖 AI 增强系统（可选）
 
 支持 **DeepSeek** 和 **Grok** 双 AI 提供商，四阶段智能优化：
@@ -614,6 +621,7 @@ docker system prune -a
 |------|------|------|
 | **README.md** | 主文档（本文件） | 当前页面 |
 | **OPERATIONS_GUIDE.md** | 🔥 操作指南（启动/暂停/结束） | [查看](OPERATIONS_GUIDE.md) |
+| **MANUAL_TRADING_GUIDE.md** | 🎮 手动交易指南（新功能！） | [查看](MANUAL_TRADING_GUIDE.md) |
 | **DOCKER_DEPLOYMENT.md** | Docker 部署完整指南 | [查看](DOCKER_DEPLOYMENT.md) |
 | **DEPLOYMENT_GUIDE.md** | 传统部署完整指南 | [查看](DEPLOYMENT_GUIDE.md) |
 | **AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md** | AI 增强系统详细说明 | [查看](AI_ENHANCEMENT_IMPLEMENTATION_COMPLETE.md) |
@@ -626,6 +634,7 @@ docker system prune -a
 |----------|-------------|------|
 | **README_EN.md** | Main README | [View](README_EN.md) |
 | **OPERATIONS_GUIDE_EN.md** | 🔥 Operations Guide (Start/Pause/Stop) | [View](OPERATIONS_GUIDE_EN.md) |
+| **MANUAL_TRADING_GUIDE.md** | 🎮 Manual Trading Guide (English) | [View](MANUAL_TRADING_GUIDE.md) |
 | **DOCKER_DEPLOYMENT_EN.md** | Docker Deployment Guide | [View](DOCKER_DEPLOYMENT_EN.md) |
 | **DEPLOYMENT_GUIDE_EN.md** | Deployment Guide | [View](DEPLOYMENT_GUIDE_EN.md) |
 | **QUICKSTART_EN.md** | Quick Start Guide | [View](QUICKSTART_EN.md) |
