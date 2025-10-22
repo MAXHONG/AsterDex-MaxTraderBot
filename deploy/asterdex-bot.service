@@ -1,0 +1,24 @@
+[Unit]
+Description=AsterDEX Trading Bot
+After=network.target
+
+[Service]
+Type=simple
+User=your_username
+WorkingDirectory=/path/to/asterdex-trading-bot
+Environment="PATH=/path/to/venv/bin:$PATH"
+ExecStart=/path/to/venv/bin/python src/main.py
+Restart=on-failure
+RestartSec=10s
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=asterdex-bot
+
+# 安全设置
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

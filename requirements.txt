@@ -1,0 +1,27 @@
+# AsterDEX API 依赖
+eth-account==0.13.7
+eth-abi==5.2.0
+web3==7.11.0
+requests==2.32.3
+
+# 数据处理和分析
+numpy==1.26.4
+pandas==2.2.3
+
+# AI/ML
+openai==1.57.2
+
+# 配置和日志
+python-dotenv==1.0.1
+pyyaml==6.0.2
+
+# 调度器
+schedule==1.2.2
+APScheduler==3.10.4
+
+# 时区支持
+pytz==2024.2
+
+# HTTP客户端
+httpx==0.28.1
+aiohttp==3.11.10
